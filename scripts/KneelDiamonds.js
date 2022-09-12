@@ -3,17 +3,14 @@ import { DiamondSizes } from "./DiamondSizes.js"
 import { JewelryStyles } from "./JewelryStyles.js"
 import { Orders } from "./Orders.js"
 import { Metals } from "./Metals.js"
+import { addCustomOrder } from "./database.js"
 
-document.addEventListener(
-    "click",
-    (event) => {
+document.addEventListener("click", (e) => {
+        if(e.target.id === "orderButton"){
+            addCustomOrder()
+        }
     }
 )
-
-const metalsHtml = Metals()
-const sizesHtml = DiamondSizes()
-const stylesHtml = JewelryStyles()
-const ordersHtml = Orders()
 
 export const KneelDiamonds = () => {
     return `
@@ -22,15 +19,15 @@ export const KneelDiamonds = () => {
         <article class="choices">
             <section class="choices__metals options">
                 <h2>Metals</h2>
-                ${metalsHtml}
+                ${Metals()}
             </section>
             <section class="choices__sizes options">
                 <h2>Sizes</h2>
-                ${sizesHtml}
+                ${DiamondSizes()}
             </section>
             <section class="choices__styles options">
                 <h2>Styles</h2>
-                ${stylesHtml}
+                ${JewelryStyles()}
             </section>
         </article>
 
@@ -40,7 +37,7 @@ export const KneelDiamonds = () => {
 
         <article class="customOrders">
             <h2>Custom Jewelry Orders</h2>
-            ${ordersHtml}
+            ${Orders()}
         </article>
     `
 }
